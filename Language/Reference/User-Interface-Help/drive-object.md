@@ -20,9 +20,10 @@ Provides access to the properties of a particular disk drive or network share.
 The following code illustrates the use of the **Drive** object to access drive properties.
 
 ```vb
-Sub ShowFreeSpace(drvPath)
-    Dim fs, d, s
-    Set fs = CreateObject("Scripting.FileSystemObject")
+Sub ShowFreeSpace(ByVal drvPath As String)
+    'Requires a reference to the Scripting library to use Early Binding. Otherwise, use CreateObject.
+    Dim fs As Scripting.FileSystemObject, d As Scripting.Drive, s As String
+    Set fs = New Scripting.FileSystemObject
     Set d = fs.GetDrive(fs.GetDriveName(drvPath))
     s = "Drive " & UCase(drvPath) & " - " 
     s = s & d.VolumeName  & vbCrLf
